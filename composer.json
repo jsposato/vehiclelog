@@ -1,6 +1,6 @@
 {
-	"name": "laravel/laravel",
-	"description": "The Laravel Framework.",
+	"name": "jsposato/vehiclelog",
+	"description": "A RESTful application to track vehicle service information.",
 	"keywords": ["framework", "laravel"],
 	"license": "MIT",
 	"require": {
