@@ -93,7 +93,7 @@ Route::filter('csrf', function()
      * filter for role check
      */
 Route::filter( 'role', function( $route, $request, $role ) {
-    if( Auth::guest() or Auth::user()->hasRole( $role ) ) {
+    if( Auth::guest() or ! Auth::user()->hasRole( $role ) ) {
         App::abort( 403 );
     }
 });
