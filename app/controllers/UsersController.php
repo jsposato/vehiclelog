@@ -35,7 +35,30 @@ class UsersController extends \BaseController {
 	 */
 	public function store()
 	{
-		//
+        // check to make sure password was entered twice correctly
+        if( ! Input::get( 'password' ) == Input::get( 'confirm_password' ) ) {
+            return "Passwords do not match";
+        }
+
+        $validation = Validator::make( Input::all(), [
+            'username'         => 'required|unique',
+            'password'         => 'required|min:8',
+            'confirm_password' => 'required|min:8',
+            'email'            => 'required|email|unique'
+        ] );
+
+        if( $validation->fails() ) {
+            return Redirect::back()->withInput()->withErrors( $validation->messages() );
+        }
+
+        $user = new User;
+        $user->username = Input::get( 'username' );
+        $user->email = Input::get( 'email' );
+        $user->password = Hash::make( Input::get( 'password' ) );
+
+        $user->save();
+
+        return Redirect::route( 'users.index' );
 	}
 
 	/**
