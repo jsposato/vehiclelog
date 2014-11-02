@@ -40,12 +40,7 @@ class UsersController extends \BaseController {
             return "Passwords do not match";
         }
 
-        $validation = Validator::make( Input::all(), [
-            'username'         => 'required|unique',
-            'password'         => 'required|min:8',
-            'confirm_password' => 'required|min:8',
-            'email'            => 'required|email|unique'
-        ] );
+        $validation = Validator::make( Input::all(), User::$rules );
 
         if( $validation->fails() ) {
             return Redirect::back()->withInput()->withErrors( $validation->messages() );
