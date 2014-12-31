@@ -3,7 +3,7 @@
 <div class="row">
     <h1>All Users</h1>
     <div class="col-md-12 col-sm-12">
-        <a href="users/create" class="btn btn-info">Add User</a><br />
+        <a href="{{ route( 'users.create' ) }}" class="btn btn-info">Add User</a><br />
     </div>
     <div class=" col-md-4 col-sm-8 ">
         <table class="table-condensed table-striped table-bordered">

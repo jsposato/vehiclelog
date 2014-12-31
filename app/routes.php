@@ -11,9 +11,8 @@
     |
     */
 
-    Route::get( '/', function () {
-        return View::make( 'home' );
-    } );
+    Route::get( '/', 'HomeController@home' );
+    Route::get( '/home', 'HomeController@home' );
 
     /*
     Route::get( 'secret', function () {
@@ -21,7 +20,8 @@
     } )->before( 'role:Administrator' );
     */
 
-    Route::resource( 'users', 'UsersController' );
     Route::get( 'users/login', 'UsersController@displayLoginForm' );
-    Route::post( 'users/login', 'UsersController@login' );
+    Route::post( 'users/login', ['uses' => 'UsersController@login', 'as' => 'users.login' ] );
     Route::get( 'users/logout', 'UsersController@logout' );
+
+    Route::resource( 'users', 'UsersController' );

@@ -10,9 +10,13 @@
             </div>
             <div class="form-group">
                 {{ Form::label( 'password', 'Password: ' ) }}
-                {{ Form::password( 'password',  [ 'class' => 'form-control' ] ) }}
+                {{ Form::password( 'password',  [ 'class' => 'form-control', 'placeholder' => 'Enter Password' ] ) }}
                 {{ $errors->first( 'password', '<p class="alert alert-danger">:message</p>' ) }}
             </div>
+            <div class="form-group">
+                {{ Form::submit('Login', ['class' => 'form-control btn btn-primary']) }}
+            </div>
+            {{ Form::close() }}
         </div>
     </div>
 @stop

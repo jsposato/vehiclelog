@@ -107,14 +107,40 @@ class UsersController extends \BaseController {
 		//
 	}
 
+	/**
+	 * Login user
+	 *
+	 * @return string
+	 */
 	public function login() {
-		return 'Logging in!';
+		$username = Input::get( 'username' );
+		$password = Input::get( 'password' );
+
+		if (Auth::attempt(array('username' => $username, 'password' => $password)))
+		{
+			return Redirect::intended( '/' );
+		}
+		return Redirect::to( '/' );
 	}
 
-	public function logout() {}
+	/**
+	 * Logout user
+	 *
+	 * @return string
+	 */
+	public function logout() {
+		Auth::logout();
 
+		return Redirect::to( '/' );
+	}
+
+	/**
+	 * show login form to user
+	 *
+	 * @return mixed
+	 */
 	public function displayLoginForm() {
-		return View::make( 'Users.login' );
+		return View::make( 'users.login' );
 	}
 
 }
