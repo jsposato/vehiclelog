@@ -107,4 +107,14 @@ class UsersController extends \BaseController {
 		//
 	}
 
+	public function login() {
+		return 'Logging in!';
+	}
+
+	public function logout() {}
+
+	public function displayLoginForm() {
+		return View::make( 'Users.login' );
+	}
+
 }

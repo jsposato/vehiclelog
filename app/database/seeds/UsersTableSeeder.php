@@ -17,6 +17,13 @@
                     'password' => Hash::make( 'codiesassy' )
                 ]
             );
+	    User::create(
+		[
+		    'username' => 'vsposato',
+		    'email'    => 'vincent.sposato@gmail.com',
+		    'password' => Hash::make( 'ntrubi213' )
+		]
+	    );
         }
 
     }

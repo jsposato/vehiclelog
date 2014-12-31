@@ -12,10 +12,7 @@
     */
 
     Route::get( '/', function () {
-        $user = User::first();
-        $user->removeRole( 2 );
-
-        return $user->roles;
+        return View::make( 'home' );
     } );
 
     /*
@@ -25,3 +22,6 @@
     */
 
     Route::resource( 'users', 'UsersController' );
+    Route::get( 'users/login', 'UsersController@displayLoginForm' );
+    Route::post( 'users/login', 'UsersController@login' );
+    Route::get( 'users/logout', 'UsersController@logout' );
