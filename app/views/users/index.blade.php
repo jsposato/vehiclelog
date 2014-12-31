@@ -22,7 +22,8 @@
                       <td>{{ $user->created_at }}</td>
                       <td>{{ $user->updated_at }}</td>
                       <td>
-                          {{ link_to( "/users/{$user->username}", "View") }}
+                          {{ link_to( "/users/{$user->username}", "View", ['class' => 'btn btn-sm btn-info'] ) }}
+                          {{ link_to( "/users/{$user->username}/edit", "Edit", ['class' => 'btn btn-sm btn-primary'] ) }}
                       </td>
                   </tr>
               @endforeach
