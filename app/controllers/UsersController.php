@@ -75,12 +75,16 @@ class UsersController extends \BaseController {
 	 * Show the form for editing the specified resource.
 	 * GET /users/{id}/edit
 	 *
-	 * @param  int  $id
+	 * @param  string $username
 	 * @return Response
 	 */
-	public function edit($id)
+	public function edit( $username )
 	{
-		//
+		// get user by username
+		$user = User::whereUsername( $username )->first();
+
+		return View::make( 'users.edit' )->with( 'user', $user );
+
 	}
 
 	/**
