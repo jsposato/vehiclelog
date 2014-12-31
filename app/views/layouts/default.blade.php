@@ -15,6 +15,21 @@
     <body>
         <!-- Container -->
         <div class="container-fluid">
+            @if( Session::has( 'message' ) )
+                <?php
+                    $message   = Session::get( 'message');
+                    $alertType = Session::get( 'alertType' );
+                ?>
+            <!-- flash messages -->
+            <div class="row">
+                <div class="alert {{{ $alertType }}} alert-dismissible" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <strong>{{{ $message }}}</strong>
+                </div>
+            </div>
+            <!-- End flash messages -->
+            @endif
 
             <!-- Content -->
             @yield('content')
@@ -23,7 +38,7 @@
 
         @yield( 'footer' )
 
-        {{--{{ HTML::script('js/jquery-1.11.1.min.js') }}--}}
+        {{ HTML::script('js/jquery-1.11.2.min.js') }}
         {{ HTML::script('js/bootstrap.min.js') }}
     </body>
 </html>

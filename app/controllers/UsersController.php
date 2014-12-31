@@ -118,9 +118,15 @@ class UsersController extends \BaseController {
 
 		if (Auth::attempt(array('username' => $username, 'password' => $password)))
 		{
-			return Redirect::intended( '/' );
+			return Redirect::intended( '/' )->with( [
+											'message'   => 'Successfully logged in',
+											'alertType' => 'alert-success'
+											] );
 		}
-		return Redirect::to( '/' );
+		return Redirect::to( '/' )->with( [
+											'message'   => 'Invalid username or password',
+											'alertType' => 'alert-danger'
+											] );
 	}
 
 	/**
@@ -131,7 +137,10 @@ class UsersController extends \BaseController {
 	public function logout() {
 		Auth::logout();
 
-		return Redirect::to( '/' );
+		return Redirect::to( '/' )->with( [
+											'message'   => 'Logged out!',
+											'alertType' => 'alert-info'
+											] );
 	}
 
 	/**
