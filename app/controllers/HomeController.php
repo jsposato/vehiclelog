@@ -18,7 +18,7 @@ class HomeController extends \BaseController {
 	public function home()
 	{
 		if( Auth::check() ) {
-			return View::make( 'home')->with( 'loggedIn', '1' );
+			return View::make( 'home' );
 		}
 		return View::make( 'home' );
 	}

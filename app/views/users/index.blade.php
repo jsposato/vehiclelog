@@ -8,18 +8,22 @@
     <div class=" col-md-4 col-sm-8 ">
         <table class="table-condensed table-striped table-bordered">
             <tr>
-              <th>Username</th>
-              <th>Email</th>
-              <th>Created</th>
-              <th>Modified</th>
+                <th>Username</th>
+                <th>Email</th>
+                <th>Created</th>
+                <th>Modified</th>
+                <th>Actions</th>
             </tr>
           @if( $users->count() )
               @foreach ( $users as $user )
                   <tr>
-                    <td>{{ link_to( "/users/{$user->username}", $user->username) }}</td>
-                    <td>{{ $user->email }}</td>
-                    <td>{{ $user->created_at }}</td>
-                    <td>{{ $user->updated_at }}</td>
+                      <td>{{ $user->username }}</td>
+                      <td>{{ $user->email }}</td>
+                      <td>{{ $user->created_at }}</td>
+                      <td>{{ $user->updated_at }}</td>
+                      <td>
+                          {{ link_to( "/users/{$user->username}", "View") }}
+                      </td>
                   </tr>
               @endforeach
           @else

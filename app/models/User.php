@@ -37,10 +37,10 @@
          * @var array validation rules
          */
         public static $rules = [
-            'username'         => 'required|unique',
+            'username'         => 'required|unique:users',
             'password'         => 'required|min:8',
             'confirm_password' => 'required|min:8',
-            'email'            => 'required|email|unique'
+            'email'            => 'required|email|unique:users'
         ];
 
         /**
