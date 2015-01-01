@@ -10,4 +10,13 @@ class Role extends \Eloquent {
     protected $table = 'roles';
 
     protected $fillable = [ 'name' ];
+
+    /**
+     * Return all available roles
+     *
+     * @return mixed
+     */
+    public function getRoles() {
+        return Role::all();
+    }
 }

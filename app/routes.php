@@ -25,3 +25,4 @@
     Route::get( 'users/logout', 'UsersController@logout' );
 
     Route::resource( 'users', 'UsersController' );
+    Route::resource( 'logs', 'LogsController' );

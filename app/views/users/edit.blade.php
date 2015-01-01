@@ -27,5 +27,5 @@
             {{ Form::close() }}
         </div>
     </div>
-    <?php //dd($user); ?>
+    <?php dd($user); ?>
 @stop
