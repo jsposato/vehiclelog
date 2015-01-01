@@ -1,6 +1,6 @@
 <?php
 
-class HomeController extends BaseController {
+class HomeController extends \BaseController {
 
 	/*
 	|--------------------------------------------------------------------------
@@ -15,9 +15,12 @@ class HomeController extends BaseController {
 	|
 	*/
 
-	public function showWelcome()
+	public function home()
 	{
-		return View::make('hello');
+		if( Auth::check() ) {
+			return View::make( 'home' );
+		}
+		return View::make( 'home' );
 	}
 
 }
