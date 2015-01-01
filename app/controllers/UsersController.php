@@ -60,13 +60,13 @@ class UsersController extends \BaseController {
 	 * Display the specified resource.
 	 * GET /users/{id}
 	 *
-	 * @param  string  $username
+	 * @param  int  $id
 	 * @return Response
 	 */
-	public function show( $username )
+	public function show( $id )
 	{
 		// get user by username
-        $user = User::whereUsername( $username )->first();
+        $user = User::findOrFail( $id );
 
         return View::make( 'users.show' )->with( 'user', $user );
     }
@@ -75,13 +75,13 @@ class UsersController extends \BaseController {
 	 * Show the form for editing the specified resource.
 	 * GET /users/{id}/edit
 	 *
-	 * @param  string $username
+	 * @param  int $id
 	 * @return Response
 	 */
-	public function edit( $username )
+	public function edit( $id )
 	{
 		// get user by username
-		$user = User::whereUsername( $username )->first();
+		$user = User::findOrFail( $id );
 
 		return View::make( 'users.edit' )->with( 'user', $user );
 
@@ -96,7 +96,12 @@ class UsersController extends \BaseController {
 	 */
 	public function update($id)
 	{
-		//
+		$user = User::findOrFail( $id );
+		$user->fill( Input::all() );
+
+		$user->save();
+
+		return View::make( 'users.show' )->with( 'user', $user );
 	}
 
 	/**

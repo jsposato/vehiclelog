@@ -37,10 +37,15 @@
          * @var array validation rules
          */
         public static $rules = [
-            'username'         => 'required|unique:users',
-            'password'         => 'required|min:8',
-            'confirm_password' => 'required|min:8',
-            'email'            => 'required|email|unique:users'
+            'create' => [
+                'username'         => 'required|unique:users',
+                'password'         => 'required|min:8',
+                'confirm_password' => 'required|min:8',
+                'email'            => 'required|email|unique:users',
+            ],
+            'update' => [
+                'email'            => 'required|email|unique:users',
+            ]
         ];
 
         /**
@@ -76,10 +81,22 @@
             return false;
         }
 
+        /**
+         * Grant passed role to user
+         *
+         * @param $role
+         * @return mixed
+         */
         public function assignRole( $role ) {
             return $this->roles()->attach( $role );
         }
 
+        /**
+         * Remove passed role from user
+         *
+         * @param $role
+         * @return mixed
+         */
         public function removeRole( $role ) {
             return $this->roles()->detach( $role );
         }
