@@ -1,6 +1,6 @@
 <?php
 
-class Log extends \Eloquent {
+class Log extends \BaseModel {
 	/**
 	 * The database table used by the model.
 	 *
@@ -9,9 +9,9 @@ class Log extends \Eloquent {
 	protected $table = 'logs';
 
 	/**
-	 * @var array fields allowed to be filled by a form
+	 * @var array fields not allowed to be filled by a form
 	 */
-	protected $fillable = [];
+	protected $guarded = [];
 
 	/**
 	 * @var array validation rules

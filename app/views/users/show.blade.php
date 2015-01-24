@@ -12,6 +12,14 @@
     </div>
     <div class="row">
         <div class="col-md-4">
+            <strong>Role:</strong>
+        </div>
+        <div class="col-md-4">
+            {{{ $user->role->name }}}
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-4">
             <strong>Created On:</strong>
         </div>
         <div class="col-md-4">

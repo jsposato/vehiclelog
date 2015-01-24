@@ -5,7 +5,7 @@
     use Illuminate\Auth\Reminders\RemindableTrait;
     use Illuminate\Auth\Reminders\RemindableInterface;
 
-    class User extends Eloquent implements UserInterface, RemindableInterface
+    class User extends BaseModel implements UserInterface, RemindableInterface
     {
 
         use UserTrait, RemindableTrait;
@@ -18,12 +18,13 @@
         protected $table = 'users';
 
         /**
-         * @var array fields allowed to be filled by a form
+         * @var array fields not allowed to be filled by a form
          */
-        protected $fillable = [
-            'username',
-            'email',
-            'password'
+        protected $guarded = [
+            'id',
+            'remember_token',
+            'created_at',
+            'updated_at'
         ];
 
         /**
@@ -58,8 +59,8 @@
          * @author  jsposato
          * @version 1.0
          */
-        public function roles() {
-            return $this->belongsToMany( 'Role' )->withTimestamps();
+        public function role() {
+            return $this->belongsTo( 'Role' );
         }
 
         /**

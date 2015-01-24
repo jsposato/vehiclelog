@@ -22,10 +22,14 @@
                 {{ $errors->first( 'email', '<p class="alert alert-danger">:message</p>' ) }}
              </div>
             <div class="form-group">
+                {{ Form::label( 'role_id', 'Role: ' ) }}
+                {{ Form::select('role_id', $allRoles , $user->role->id, array('id' => 'role', 'class' => 'form-control',  )) }}
+                {{ $errors->first( 'email', '<p class="alert alert-danger">:message</p>' ) }}
+            </div>
+            <div class="form-group">
                 {{ Form::submit('Submit', ['class' => 'form-control btn btn-primary']) }}
             </div>
             {{ Form::close() }}
         </div>
     </div>
-    <?php dd($user); ?>
 @stop

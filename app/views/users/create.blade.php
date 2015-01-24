@@ -6,14 +6,19 @@
             {{ Form::open( [ 'route' => 'users.store', 'class' => 'form' ] ) }}
             <div class="form-group">
                 {{ Form::label( 'username', 'Username: ' ) }}
-                {{ Form::text( 'username', '', [ 'class' => 'form-control', 'placeholder' => 'Username' ] ) }}
+                {{ Form::text( 'username', null, [ 'class' => 'form-control', 'placeholder' => 'Username' ] ) }}
                 {{ $errors->first( 'username', '<p class="alert alert-danger">:message</p>' ) }}
             </div>
              <div class="form-group">
                  {{ Form::label( 'email', 'Email: ' ) }}
-                 {{ Form::text( 'email', '',  [ 'class' => 'form-control', 'placeholder' => 'Email Address' ]  ) }}
+                 {{ Form::text( 'email', null,  [ 'class' => 'form-control', 'placeholder' => 'Email Address' ]  ) }}
                 {{ $errors->first( 'email', '<p class="alert alert-danger">:message</p>' ) }}
              </div>
+            <div class="form-group">
+                {{ Form::label( 'role_id', 'Role: ' ) }}
+                {{ Form::select('role_id', $allRoles , null, array('id' => 'role', 'class' => 'form-control',  )) }}
+                {{ $errors->first( 'email', '<p class="alert alert-danger">:message</p>' ) }}
+            </div>
             <div class="form-group">
                 {{ Form::label( 'password', 'Password: ' ) }}
                 {{ Form::password( 'password',  [ 'class' => 'form-control' ] ) }}

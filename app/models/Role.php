@@ -1,6 +1,6 @@
 <?php
 
-class Role extends \Eloquent {
+class Role extends \BaseModel {
 
     /**
      * The database table used by the model.
@@ -9,7 +9,14 @@ class Role extends \Eloquent {
      */
     protected $table = 'roles';
 
-    protected $fillable = [ 'name' ];
+    /**
+     * @var array fields not allowed to be filled by a form
+     */
+    protected $guarded = [
+        'id',
+        'created_at',
+        'updated_at'
+    ];
 
     /**
      * Return all available roles
@@ -19,4 +26,19 @@ class Role extends \Eloquent {
     public function getRoles() {
         return Role::all();
     }
+
+    /**
+     * users
+     *
+     * return users for a role
+     *
+     * @return mixed
+     *
+     * @author  jsposato
+     * @version 1.0
+     */
+    public function users() {
+        return $this->hasMany( 'User' );
+    }
+
 }

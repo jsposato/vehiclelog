@@ -1,5 +1,6 @@
 <?php
 
+
 class UsersController extends \BaseController {
 
 	/**
@@ -24,7 +25,8 @@ class UsersController extends \BaseController {
 	 */
 	public function create()
 	{
-		return View::make( 'users.create' );
+		$allRoles = Role::lists( 'name', 'id' );
+		return View::make( 'users.create' )->with( 'allRoles', $allRoles );
 	}
 
 	/**
@@ -46,10 +48,11 @@ class UsersController extends \BaseController {
             return Redirect::back()->withInput()->withErrors( $validation->messages() );
         }
 
-        $user = new User;
-        $user->username = Input::get( 'username' );
-        $user->email = Input::get( 'email' );
-        $user->password = Hash::make( Input::get( 'password' ) );
+		$user = new User;
+		$user->username = Input::get( 'username' );
+		$user->email    = Input::get( 'email' );
+		$user->password = Hash::make( Input::get( 'password' ) );
+		$user->role_id  = Input::get( 'role_id' );
 
         $user->save();
 
@@ -81,8 +84,11 @@ class UsersController extends \BaseController {
 	public function edit( $id )
 	{
 		// get user by username
-		$user = User::findOrFail( $id );
-		return View::make( 'users.edit' )->with( ['user' => $user] );
+		$user  = User::findOrFail( $id );
+		$allRoles = Role::lists( 'name', 'id' );
+		$roles = User::find( $user->id )->role();
+
+		return View::make( 'users.edit' )->with( ['user' => $user, 'roles' => $roles, 'allRoles' => $allRoles ] );
 
 	}
 
@@ -97,7 +103,6 @@ class UsersController extends \BaseController {
 	{
 		$user = User::findOrFail( $id );
 		$user->fill( Input::all() );
-
 		$user->save();
 
 		return View::make( 'users.show' )->with( 'user', $user );
