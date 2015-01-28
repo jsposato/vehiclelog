@@ -1,0 +1,1 @@
+/home/vagrant/vehiclelog/app/views/vehicles/show.blade.php
